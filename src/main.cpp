@@ -32,7 +32,7 @@ float lastFrame = 0.0f;
 glm::vec3 sunPos = glm::vec3(0.0f, 0.0f, 0.0f);
 float sunMass = 100.0f;
 
-glm::vec3 planetPos = glm::vec3(0.0f, 3.0f, 0.0f);
+glm::vec3 planetPos = glm::vec3(0.0f, 2.0f, 0.0f);
 glm::vec3 planetVelocity = glm::vec3(3.0f, 0.0f, 0.0f);
 float planetMass = 10.0f;
 
@@ -167,8 +167,8 @@ int main()
 
 void animate()
 {
-    const float G = 0.15f;
-    glm::vec3 accelaration = G * (float)(sunMass / (pow(glm::length(sunPos - planetPos), 2))) * (sunPos - planetPos);
+    const float G = 0.2f;
+    glm::vec3 accelaration = G * (float)(sunMass / (pow(glm::length(sunPos - planetPos), 2))) * glm::normalize((sunPos - planetPos));
     planetPos += (planetVelocity * deltaTime) + (0.5f * accelaration * (float)pow(deltaTime, 2));
     planetVelocity += accelaration * deltaTime;
 }
